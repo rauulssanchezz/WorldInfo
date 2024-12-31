@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   background: var(--foreground);
-  box-shadow: inset 5px 5px 10px var(--shadows);
+  box-shadow: 5px 5px 5px var(--shadows);
   .header-logo{
     width: 20%;
     display: flex;
