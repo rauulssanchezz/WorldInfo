@@ -6,7 +6,7 @@
     <input type="text" id="search-country" for="select-country" placeholder="Search Country" (keyup)="onSearch($event)">
     <select id="select-country" (change)="onCountryChange($event)">
       <option value="0">Select Country</option>
-      <option *ngFor="let country of countries" #countrySelect [value]="country.id">{{country.name.common}}</option>
+      <option *ngFor="let country of filteredCountries" #countrySelect [value]="country.id">{{country.name.common}}</option>
     </select>
   </div>
 </div>
