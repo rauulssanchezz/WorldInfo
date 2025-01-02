@@ -1,39 +1,30 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RestCountriesService } from '../../services/rest-countries.service';
 
 @Component({
   selector: 'country-selector-component',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './country-selector.component.html',
   styleUrl: './country-selector.component.css'
 })
 export class CountrySelectorComponent {
   countries: any[] = [];
-  filteredCountries: any[] = [];
+  countryFlagUrl: string = '';
 
   constructor(private restCountriesService: RestCountriesService) {
     this.restCountriesService.getAllCountries().subscribe((data: any[]) => {
       console.log(data);
       this.countries = data;
-      this.filteredCountries = data;
     });
   }
 
-  onSearch(search: Event){
-    const searchCountry = (search.target as HTMLInputElement).value.toLowerCase();
-    console.log('Input:'+(search.target as HTMLInputElement).value);
-    console.log('Search:'+searchCountry);
-    if(searchCountry === '') {
-      this.filteredCountries = this.countries;
-      return;
-    }
-    this.filteredCountries = this.countries.filter((country) => {
-      return country.name.common.toLowerCase().includes(searchCountry);
-    });
-  }
+  onCountryChange(event: any): void {
+    const target = event.target as HTMLSelectElement;
+    const value: string = target.value;
 
-  onCountryChange(event: any) {
+    this.countryFlagUrl = this.countries.find((country) => country.name.common === value).flags.png;
+    console.log(this.countryFlagUrl);
   }
 }
