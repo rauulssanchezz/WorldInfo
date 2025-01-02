@@ -1,6 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RestCountriesService } from '../../services/rest-countries.service';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'country-selector-component',
@@ -13,10 +14,9 @@ export class CountrySelectorComponent {
   countries: any[] = [];
   countryFlagUrl: string = '';
 
-  constructor(private restCountriesService: RestCountriesService) {
+  constructor(private restCountriesService: RestCountriesService, private newsService: NewsService) {
     this.restCountriesService.getAllCountries().subscribe((data: any[]) => {
-      console.log(data);
-      this.countries = data;
+      this.countries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
     });
   }
 
@@ -25,6 +25,6 @@ export class CountrySelectorComponent {
     const value: string = target.value;
 
     this.countryFlagUrl = this.countries.find((country) => country.name.common === value).flags.png;
-    console.log(this.countryFlagUrl);
+    this.newsService.refreshCountryName(value);
   }
 }

@@ -1,0 +1,27 @@
+<div *ngIf="news.length !== 0; else newsContainerEmpty" class="news-container">
+  <div class="news-search">
+    <input type="text" placeholder="Search news" (change)="searchNews($event)">
+  </div>
+  <div class="news-header" *ngFor="let article of news">
+    <h2>{{article.title}}</h2>
+    <img [src]="article.urlToImage" alt="article title">
+    <div class="news-content">
+      <p>{{article.content}} <a [href]="article.url" target="_blank">Read more</a></p>
+      <h4>{{article.publishedAt}}</h4>
+    </div>
+  </div>
+</div>
+<ng-template #newsContainerEmpty>
+  <div *ngIf="componentInit; else newsContainerNotIniti" class="news-container-empty">
+    <div class="news-search">
+      <input type="text" placeholder="Search news" (change)="searchNews($event)">
+    </div>
+    <h2>No news found for search: {{search}}</h2>
+  </div>
+</ng-template>
+
+<ng-template #newsContainerNotIniti>
+  <div class="news-container-empty">
+    <h2>Select a country</h2>
+  </div>
+</ng-template>
