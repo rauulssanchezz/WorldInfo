@@ -9,12 +9,15 @@
   background: var(--foreground);
   box-shadow: 5px 5px 5px var(--shadows);
   .header-logo{
-    width: 20%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    gap: 1rem;
     img{
       width: 3rem;
+      display: inline-flex;
+    }
+    h1{
+      display: inline-flex;
     }
   }
 }

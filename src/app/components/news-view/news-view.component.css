@@ -1,6 +1,7 @@
 .news-container{
   text-align: center;
-  width: 45rem;
+  width: 60%;
+  height: 100%;
   margin: auto;
   margin-top: 3rem;
   background: var(--foreground);
@@ -55,4 +56,49 @@
 .news-container-empty{
   width: 100%;
   text-align: center;
+}
+
+@media screen and (max-width: 850px){
+  .news-container{
+    padding: 0.2rem 4rem;
+  }
+}
+
+@media screen and (max-width: 850px){
+  .news-container{
+    padding: 0.2rem 3rem;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .news-container{
+    padding: 0.2rem 2rem;
+  }
+}
+
+@medi screen and (max-width: 500px){
+  .news-container{
+    padding: 0.2rem 1rem;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .news-container{
+    .news-search{
+      input{
+        width: 7rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 350px){
+  .news-container{
+    padding: 0.2rem 1rem;
+    .news-search{
+      input{
+        width: 5rem;
+      }
+    }
+  }
 }
