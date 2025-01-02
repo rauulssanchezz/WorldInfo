@@ -14,10 +14,21 @@ export class NewsViewComponent {
   news:any[] = [];
   componentInit: boolean = false;
   search = '';
+  requestLimit: boolean = false;
 
   ngOnInit(): void {
-    this.getNews('');
+    this.newsService.requestLimitSubject.subscribe((limitReached) => {
+      this.requestLimit = limitReached;
+      console.log('Request Limit:', this.requestLimit);
+
+      if (!this.requestLimit) {
+        this.getNews('');
+      } else {
+        console.log('API limit reached. Please try again later.');
+      }
+    });
   }
+
   getNews(search:string): void{
     this.newsService.getNewsByCountry(search).subscribe((data: any) => {
       this.news = data.articles;

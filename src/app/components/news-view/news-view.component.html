@@ -21,7 +21,14 @@
 </ng-template>
 
 <ng-template #newsContainerNotIniti>
-  <div class="news-container-empty">
+  <div *ngIf="!requestLimit; else apiLimitReached " class="news-container-empty">
     <h2>Select a country</h2>
   </div>
 </ng-template>
+
+<ng-template #apiLimitReached>
+  <div class="news-container-empty">
+    <h2>Api limit reached. Please try again tomorrow😞.</h2>
+  </div>
+</ng-template>
+
