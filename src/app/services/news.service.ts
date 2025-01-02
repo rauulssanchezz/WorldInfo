@@ -13,7 +13,6 @@ export class NewsService {
   requestLimitSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   refreshCountryName(name: string): void{
-    console.log('Country Name: '+name);
     this.countrySubject.next(name);
   }
 
@@ -25,7 +24,7 @@ export class NewsService {
           return [];
         }
         if(search){
-          result = this.httpClient.get(`${environment.newsApiUrl}${countryName} AND ${search}&apiKey=${environment.newsApiKey}`)
+          result = this.httpClient.get(`https://newsapi.org/v2/everything?q=${countryName} AND ${search}&apiKey=${environment.newsApiKey}`)
             .pipe(
               catchError((error) => {
                 console.error('Error:', error);
@@ -37,7 +36,7 @@ export class NewsService {
               })
             );
         }else{
-          result = this.httpClient.get(`${environment.newsApiUrl}${countryName}&apiKey=${environment.newsApiKey}`).pipe(
+          result = this.httpClient.get(`https://newsapi.org/v2/everything?q=${countryName}&apiKey=${environment.newsApiKey}`).pipe(
             catchError((error) => {
               console.error('Error:', error);
               if(error.status === 429){
