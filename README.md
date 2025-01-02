@@ -1,6 +1,7 @@
 # WorldInfo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+This project can have problems with some devices because of the apis.
 
 ## Development server
 
